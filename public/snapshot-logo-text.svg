@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 454.167px;
+        fill: #2f2f2f;
+        font-family: Gilroy;
+        font-weight: 800;
+      }
+    </style>
+  </defs>
+  <text id="snapshot" class="cls-1" transform="translate(341.806 605.365) scale(0.566 0.572)">snapshot</text>
+</svg>
