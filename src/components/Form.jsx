@@ -20,7 +20,10 @@ const Form = () => {
     }
 
     const processUpload = async () => {
-        if (captionInput === "" || !image) {return}
+        if (!image) {
+            alert("Upload an image to post.")
+            return;
+        }
         
         //Firebase storage location
         const storageRef = ref(storage, `images/${image.name}`);
@@ -40,6 +43,12 @@ const Form = () => {
         })
     }
 
+    const getDate = () => {
+        const date = new Date();
+        const dateString = date.toString();
+        return `${dateString.slice(4,10)}, ${date.getFullYear()}`;
+    }
+
     const handleUpload = async (url) => {
         const postCollection = collection(db, "Posts");
         //Upload doc to Firebase
@@ -50,14 +59,13 @@ const Form = () => {
             name: auth.currentUser.displayName,
             votes: 0,
             caption: captionInput,
-            image: url
+            image: url,
+            date: getDate()
         })
-        .then(() => {
-            setImage(null);
-            setCaptionInput("");
-            setProgress(0);
-            imageRef.current.value = "";
-        })
+        setImage(null);
+        setCaptionInput("");
+        setProgress(0);
+        imageRef.current.value = "";
     }
     
     return (

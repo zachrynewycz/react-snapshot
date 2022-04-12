@@ -17,10 +17,7 @@ const Home = () => {
         <div className="homepage">
             <div className='nav'>
                 <Sidebar/>
-                <div className='nav-logo'>
-                    <div className='logo-icon'></div>
-                    <div className='logo-text'></div>
-                </div>
+                <div className='logo'/>
 
                 <div className="nav-user-info">
                     <img className="nav-user-profilepic" src={profilePic}/>

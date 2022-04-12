@@ -22,37 +22,22 @@ const provider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => { 
   await signInWithPopup(auth, provider).then(()=> {    
     setLocalStorage(auth);
-    createUserDocument(auth);
-    getUsersVotes(auth);
+    getUserDocument(auth);
   });   
 }
 
-const createUserDocument = async (auth) => {
-  const userId = auth.currentUser.uid;
-  const userDoc = await getDoc(doc(db, "Users", userId))
-  
-  //If its a new user then create a new document for them
-  if (!userDoc.exists()) { 
-    await setDoc(doc(db, "Users", userId), {
-      votes: []
-    })
-  }
-}
+const getUserDocument = async (auth) => {
+  const userDoc = await getDoc(doc(db, "Users", auth.currentUser.uid));
 
-const getUsersVotes =  async (auth) => {
-  //User collection
-  const userVotesRef = doc(db, "Users", auth.currentUser.uid);
-  //User document data
-  const data = await getDoc(userVotesRef);
-  localStorage.setItem("votes", JSON.stringify([...data.data().votes]))
+  if (!userDoc.exists()) { 
+    //create document for new users
+    await setDoc(doc(db, "Users", auth.currentUser.uid), { votes: [] });
+    return;
+  }
+  localStorage.setItem("votes", JSON.stringify([...userDoc.data().votes]));
 }
 
 const setLocalStorage = (auth) => {
-  const name = auth.currentUser.displayName.split(" ")[0];
-  const email = auth.currentUser.email;
-  const profilePic = auth.currentUser.photoURL;
-  //Set local storage
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
-  localStorage.setItem("profilePic", profilePic);
+  localStorage.setItem("name", auth.currentUser.displayName.split(" ")[0]);
+  localStorage.setItem("profilePic", auth.currentUser.photoURL);
 }

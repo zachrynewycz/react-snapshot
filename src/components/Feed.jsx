@@ -40,6 +40,7 @@ const Feed = () => {
                     <div className="post-header">
                         <img className="post-profilepic" src={post.profilePhoto}/>
                         <h1 className="post-username">{post.name}</h1>
+                        <p className="post-date">{post.date}</p>
                         
                         <UpdownButton postId={post.id} votes={post.votes} userId={auth.currentUser.uid}/>
 

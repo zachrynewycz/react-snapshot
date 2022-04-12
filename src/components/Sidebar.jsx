@@ -9,7 +9,6 @@ const Sidebar = () => {
     const handleLogout = async () => {
         await signOut(auth).then(()=> {
             localStorage.clear();
-            alert("You have been sucessfully signed out.");
         });
     };
     

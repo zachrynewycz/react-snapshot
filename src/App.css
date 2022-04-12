@@ -23,6 +23,7 @@
   src: url(../public/fonts/Poppins-SemiBold.ttf);
 }
 
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -58,8 +59,8 @@ footer {
   font-family: Pop-M;
   font-size: 60px;
   color: var(--logo-color);
-  position: absolute;
-  top: 28%;
+  position: relative;
+  top: 23%;
   left: 8%;
   z-index: 2;
 }
@@ -89,11 +90,14 @@ footer {
 }
 
 .login-logo {
-  width: fit-content;
   position: relative;
-  display: flex;
-  align-items: center;
-  left: 2%;
+  left: 1%;
+  top: -15px;
+  background-image: url(../public/snapshot-logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 170px ;
+  height: 100px;
 }
 
 .google-btn {
@@ -109,15 +113,19 @@ footer {
   border: none;
   width: 375px;
   height: 75px;
-  top: 40%;
+  top: 25%;
   left: 8%;
-  position: absolute;
-  padding: 12px 10px 12px 42px;
+  position: relative;
+  padding-left: 35px;
   box-shadow: 0 0px 25px 1px rgb(0 0 0 / 9%);
 }
 
 .google-btn:hover {
   box-shadow: 0 0px 30px 1px rgb(0 0 0 / 15%);
+}
+
+.google-btn:active {
+  transform: scale(.99);
 }
 
 
@@ -150,32 +158,17 @@ button {
   display: inline-flex;
 }
 
-.nav-logo {
-  width: fit-content;
-  position: relative;
+.logo {
   display: inline-flex;
   align-items: center;
-}
-
-.logo-text {
-  background-image: url(../public/snapshot-logo-text.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
-  width: 200px;
+  background-image: url(../public/snapshot-logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 170px ;
   height: 100px;
-  top: -25px;
-  margin-left: -30px;
-}
-
-.logo-icon {
-  background-image: url(../public/icon.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  top: -17px;
+  top: -20px;
+  left: -15px;
 }
 
 .nav-user-profilepic {
@@ -199,16 +192,16 @@ button {
 /* Sidebar */
 
 .sidebar {
-  height: 100%; 
-  width: 250px; 
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
   left: 0;
-  background-color: white; 
-  overflow-x: hidden; 
-  padding-top: 60px; 
-  transition: .2s ease; 
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: .2s ease;
   box-shadow: 1px 10px 10px 0 rgba(0, 0, 0, .1);
 }
 
@@ -265,7 +258,7 @@ button {
 }
 
 #github-text:hover {
-  color: #444444;
+  color: #343434;
 }
 
 #sidebar-open-btn {
@@ -334,10 +327,10 @@ button {
   background-color: #1a73e9;
   color: white;
   position: relative;
-  top: 135px;
+  top: 137px;
   width: 90px;
-  border-radius: 2px;
-  height: 35px;
+  border-radius: 3px;
+  height: 33px;
   float: right;
   margin-right: 25px;
 }
@@ -347,7 +340,7 @@ button {
 }
 
 .form-submit:active {
-  font-size: 14px;
+  transform: scale(.95);
 }
 
 .caption-input {
@@ -424,7 +417,7 @@ input::-webkit-file-upload-button:active {
 
 .post-header {
   position: relative;
-  width: 700px;
+  width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
@@ -443,8 +436,17 @@ input::-webkit-file-upload-button:active {
   font-size: 16px;
   position: absolute;
   color:#444444;
-  top: 40%;
+  top: 17px;
   left: 70px;
+}
+
+.post-date {
+  position: absolute;
+  font-family: Pop-S;
+  font-size: 11px;
+  top: 40px;
+  left: 70px;
+  color: #949494;
 }
 
 .updown {
@@ -463,6 +465,34 @@ input::-webkit-file-upload-button:active {
   background-color: transparent;
   border: none;
   width: 30px;
+}
+
+#votepulse {
+  width: 6px;
+  height: 5px;
+  left: 12px;
+  top: 10px;
+  position: absolute;
+  border-radius: 100%;
+  box-shadow: 0 0 0 0 rgba(52, 172, 224, 1);
+  animation: pulse-blue 1s;
+}
+
+@keyframes pulse-blue {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0.7);
+  }
+
+  50% {
+    transform: scale(1.5);
+    box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
+  }
 }
 
 #post-votes {
@@ -492,13 +522,15 @@ input::-webkit-file-upload-button:active {
   width: 640px;
   height: auto;
   text-align: left;
-  word-break: break-all;
+  word-break: keep-all;
 }
 
 #post-delete {
   border-color: transparent;
   background-color: transparent;
   background-image: url(../public/x.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
   font-family: Pop-S;
   color: var(--captions);
   position: absolute;
@@ -509,7 +541,10 @@ input::-webkit-file-upload-button:active {
   cursor: pointer;
 }
 
-#post-delete:hover, #post-delete:active {
+#post-delete:hover {
+  background-image: url(../public/x-alt.svg);
+}
+#post-delete:active {
   background-image: url(../public/x-alt.svg);
 }
 
@@ -533,6 +568,10 @@ input::-webkit-file-upload-button:active {
   background-image: url(../public/edit-alt.svg);
 }
 
+#post-edit:active {
+  transform: scale(.90);
+}
+
 @media only screen and (max-width: 1200px) {
   #login-photo, #wave { display: none; }
 }
@@ -544,6 +583,11 @@ input::-webkit-file-upload-button:active {
 
   .caption-input {
     width: 450px;
+  }
+
+  .post-caption {
+    width: 450px;
+
   }
 
   .updown {
@@ -572,6 +616,122 @@ input::-webkit-file-upload-button:active {
 
   #login-header {
     font-size: 40px;
-    top: 32%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .feed {
+    display: inline-flex;
+  }
+
+  .form { width: 90vw; }
+
+  .form-submit {
+    width: 70px;
+    height: 27px;
+    font-size: 10px;
+  }
+
+  #form-header {
+    font-size: 18px;
+  }
+
+  .upload-progress {
+    width: 50px;
+    right: 110px;
+  }
+
+  .caption-input {
+    width: 80vw;
+    font-size: 12px;
+  }
+
+  .logo {
+    width: 130px;
+    top: -4px;
+  }
+  .nav-user-profilepic {
+    width: 27px;
+    top: 3px;
+  }
+
+  #sidebar-open-btn {
+    left: 10%;
+    top: 25px;
+  }
+
+  .post {
+    width: 90vw;
+  }
+
+  .post-profilepic {
+    width: 30px;
+  }
+
+  .post-username {
+    font-size: 12px;
+    left: 60px;
+    top: 20px;
+  }
+
+  .post-date {
+    font-size: 9px;
+    left: 60px;
+  }
+
+  .updown {
+    left: 160px;
+  }
+
+  #upvote-btn {
+    background-size: 15px;
+    width: 20px;
+  }
+
+  #post-votes {
+    font-size: 15px;
+  }
+
+  #login-header {
+    font-size: 25px;
+  }
+
+  .google-btn {
+    width: 70vw;
+    height: 55px;
+    font-size: 15px;
+    background-size: 25px;
+    background-position: 25px 15px;
+  }
+
+  .post-caption {
+    width: 90%;
+    word-break: keep-all;
+    left: 12px;
+  }
+  
+  input::-webkit-file-upload-button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .image-input {
+    top: 125px;
+  }
+
+  #post-edit {
+    left: 265px;
+    width: 20px;
+    height: 20px;
+  }
+
+  #post-delete {
+    left: 290px;
+    width: 24px;
+    height: 24px;
+  }
+
+  #votepulse {
+    left: 9px;
   }
 }
