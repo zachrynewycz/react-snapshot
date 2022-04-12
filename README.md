@@ -8,7 +8,7 @@
 
 - Google auth sign-in 
 - Post GIFS/Images
-- Upvote other users posts (keeps track of Upotes)
+- Upvote other users posts (keeps track of Upvotes)
 - Users can edit & delete posts
 - Responsive design for Web/Mobile users
 
