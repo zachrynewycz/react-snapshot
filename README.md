@@ -13,13 +13,6 @@
 - Responsive design for Web/Mobile users
 
 
-## Tech Stack
-
-**Client:** React, HTML/CSS, JavaScript
-
-**Server:** Node, Firebase
-
-
 ## Screenshots
 
 ![App Screenshot](https://user-images.githubusercontent.com/85086293/162856552-23979e91-02fd-40d8-a722-a24632580285.JPG)
