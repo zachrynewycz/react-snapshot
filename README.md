@@ -1,15 +1,15 @@
 
 # React-Snapshot
 
-💬 A simple social media app *(CRUD application)* with inspiration taken from reddit, twitter, and instagram. Visit link below to demo.
-- https://social-media-app-635c5.web.app/
+💬 A social media app with some inspirations taken from reddit, twitter, and instagram.
+
+**Live Demo**: https://social-media-app-635c5.web.app/
 
 ## Features
 
 - Google auth sign-in 
-- Post GIFS/Images
-- Upvote other users posts (keeps track of Upvotes)
-- Users can edit & delete posts
+- Upvote other users posts (keeps track of what you have upvoted)
+- Users can post, edit, and delete posts
 - Responsive design for Web/Mobile users
 
 
