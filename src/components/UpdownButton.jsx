@@ -2,39 +2,36 @@ import { useState, useEffect } from "react";
 import { db } from "../../firebase";
 import { updateDoc, doc, getDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 
-const UpdownButton = ({ id, votes, uid }) => {
+const UpdownButton = ({ post, uid }) => {
     const [isVoted, setIsVoted] = useState(false);
     const [animate, setAnimate] = useState(false);
-
-    const postDocRef = doc(db, "Posts", id);
-    const usersVotedPostsRef = doc(db, "Users", uid);
+    const postDocRef = doc(db, "Posts", post.id);
+    const userDocRef = doc(db, "Users", uid);
 
     useEffect(() => {
-        const fetchVotedPosts = async () => {
-            const usersVotesDoc = await getDoc(usersVotedPostsRef);
-            const userVotedPosts = usersVotesDoc.data()?.votes;
+        checkIfVoted();
+    }, [post.id, userDocRef]);
 
-            if (userVotedPosts?.includes(id)) {
-                setIsVoted(true);
-            }
-        };
+    const checkIfVoted = async () => {
+        const userDoc = await getDoc(userDocRef);
+        const userVotes = userDoc.data()?.votes;
 
-        fetchVotedPosts();
-    }, [id, usersVotedPostsRef]);
+        if (userVotes?.includes(post.id)) {
+            setIsVoted(true);
+        }
+    };
 
     const handleVote = async () => {
         if (!isVoted) {
-            //Start pulse animation when user increase vote only
-            setAnimate(true);
+            setAnimate(true); // start pulse animation when user upvotes
             setTimeout(() => setAnimate(false), 1000);
-            //Update post vote count / users votes posts array
-            await updateDoc(usersVotedPostsRef, { votes: arrayUnion(id) });
-            await updateDoc(postDocRef, { votes: votes + 1 });
+
+            await updateDoc(userDocRef, { votes: arrayUnion(post.id) });
+            await updateDoc(postDocRef, { votes: post.votes + 1 });
             setIsVoted(true);
         } else {
-            //Update post vote count / users votes posts array
-            await updateDoc(usersVotedPostsRef, { votes: arrayRemove(id) });
-            await updateDoc(postDocRef, { votes: votes - 1 });
+            await updateDoc(userDocRef, { votes: arrayRemove(post.id) });
+            await updateDoc(postDocRef, { votes: post.votes - 1 });
             setIsVoted(false);
         }
     };
@@ -52,7 +49,7 @@ const UpdownButton = ({ id, votes, uid }) => {
                 }}
                 onClick={handleVote}
             />
-            <h1 id="post-votes">{votes}</h1>
+            <h1 id="post-votes">{post.votes}</h1>
         </div>
     );
 };

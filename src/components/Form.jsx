@@ -16,7 +16,7 @@ const Form = () => {
         setCaptionInput(e.target.value);
     };
 
-    const handleImage = (e) => {
+    const handleFileUpload = (e) => {
         setImage(e.target.files[0]);
     };
 
@@ -74,7 +74,7 @@ const Form = () => {
                 placeholder="Enter a caption for your post..."
                 maxLength="185"
             />
-            <input className="image-input" type="file" ref={imageRef} onChange={handleImage} accept="image/*" />
+            <input className="image-input" type="file" ref={imageRef} onChange={handleFileUpload} accept="image/*" />
 
             <progress
                 className="upload-progress"
@@ -82,7 +82,7 @@ const Form = () => {
                 value={progress}
                 max="100"
             />
-            <button className="form-submit" onClick={processUpload}>
+            <button className="form-submit" onClick={processUpload} disabled={!image}>
                 POST
             </button>
         </div>

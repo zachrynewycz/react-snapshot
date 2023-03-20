@@ -1,34 +1,41 @@
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { auth } from "../../firebase";
 import UpdownButton from "./UpdownButton";
 
-const Post = ({ post, deletePost, editPost }) => {
-    const currentUser = auth.currentUser;
-
-    const handleDelete = () => {
-        deletePost(post.id);
+const Post = ({ post }) => {
+    const deletePost = async () => {
+        const postToDelete = doc(db, "Posts", post.id);
+        await deleteDoc(postToDelete);
     };
 
-    const handleEdit = () => {
-        editPost(post);
+    const editPost = async () => {
+        const newPostCaption = prompt("Enter new caption for your post", post.caption);
+
+        if (newPostCaption) {
+            const postRef = doc(db, "Posts", post.id);
+            await updateDoc(postRef, { caption: newPostCaption });
+        }
     };
 
     return (
-        <div className="post" key={post.id}>
+        <div className="post">
             <div className="post-header">
-                <img className="post-profilepic" src={post.profilePhoto} alt={post.name} />
+                <img className="post-profilepic" src={post.profilePhoto} />
                 <h1 className="post-username">{post.name}</h1>
                 <p className="post-date">{post.date}</p>
 
-                <UpdownButton id={post.id} votes={post.votes} uid={currentUser.uid} />
-                {post.userId === currentUser.uid && (
+                <UpdownButton post={post} uid={auth.currentUser.uid} />
+
+                {post.userId === auth.currentUser.uid && (
                     <>
-                        <button onClick={handleDelete} id="post-delete" />
-                        <button onClick={handleEdit} id="post-edit" />
+                        <button onClick={deletePost} id="post-delete" />
+                        <button onClick={editPost} id="post-edit" />
                     </>
                 )}
             </div>
+
             <p className="post-caption">{post.caption}</p>
-            <img className="post-image" src={post.image} alt={post.caption} />
+            <img className="post-image" src={post.image} />
         </div>
     );
 };

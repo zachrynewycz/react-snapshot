@@ -20,9 +20,7 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async () => {
-    await signInWithPopup(auth, provider).then(() => {
-        getUserDocument(auth);
-    });
+    await signInWithPopup(auth, provider).then(getUserDocument(auth));
 };
 
 const getUserDocument = async (auth) => {
@@ -30,6 +28,5 @@ const getUserDocument = async (auth) => {
 
     if (!userDoc.exists()) {
         await setDoc(doc(db, "Users", auth.currentUser.uid), { votes: [] });
-        return;
     }
 };

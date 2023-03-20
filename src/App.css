@@ -9,11 +9,6 @@
 }
 
 @font-face {
-    font-family: Pop-B;
-    src: url(/fonts/Poppins-ExtraBold.ttf);
-}
-
-@font-face {
     font-family: Pop-M;
     src: url(/fonts/Poppins-Medium.ttf);
 }
@@ -82,12 +77,10 @@ html {
 }
 
 .login-logo {
-    position: relative;
-    left: 1%;
-    top: -15px;
     background-image: url(/snapshot-logo.png);
     background-repeat: no-repeat;
     background-size: contain;
+    margin-left: 25px;
     width: 170px;
     height: 100px;
 }
@@ -107,6 +100,7 @@ html {
     height: 75px;
     top: 25%;
     left: 8%;
+    min-width: 200px;
     position: relative;
     padding-left: 35px;
     box-shadow: 0 0px 25px 1px rgb(0 0 0 / 9%);
@@ -192,7 +186,7 @@ nav {
     left: 0;
     background-color: white;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 80px;
     transition: 0.2s ease;
     box-shadow: 1px 10px 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -214,14 +208,9 @@ nav {
 .sidebar a {
     font-size: 25px;
     font-family: Pop-S;
-    text-decoration: none;
     color: var(--sidebar-text);
     display: block;
     cursor: pointer;
-}
-
-.sidebar a:hover {
-    color: #000000;
 }
 
 #sidebar-close-btn {
@@ -237,34 +226,8 @@ nav {
     right: 25px;
 }
 
-#sidebar-label {
-    position: relative;
-    text-align: left;
-    margin-left: 25px;
-    margin-top: 10px;
-}
-
-#github {
-    background-image: url(/github.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-}
-
-#github-text {
-    color: var(--captions);
-    font-size: 15px;
-    position: absolute;
-    top: 3px;
-    left: 45px;
-}
-
-#github-text:hover {
-    color: #343434;
+.sidebar :is(button, a):hover {
+    transform: scale(1.05);
 }
 
 .logout {
@@ -315,16 +278,14 @@ nav {
 
 .form-submit {
     font-family: Pop-M;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    font-size: 14px;
     border: none;
     background-color: #1a73e9;
     color: white;
     position: relative;
+    padding: 6px 20px;
     top: 137px;
-    width: 90px;
-    border-radius: 3px;
-    height: 33px;
+    border-radius: 5px;
     float: right;
     margin-right: 25px;
 }
@@ -344,7 +305,7 @@ nav {
     border: transparent;
     color: var(--captions);
     top: 50px;
-    left: 25px;
+    left: 20px;
     width: 650px;
     padding-bottom: 20px;
 }
@@ -458,7 +419,7 @@ input::-webkit-file-upload-button:active {
     background-image: url(/arrow-unvoted.png);
     background-size: 20px;
     background-position: 5px;
-    margin-right: 10px;
+    margin-right: 5px;
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
@@ -541,10 +502,7 @@ input::-webkit-file-upload-button:active {
     cursor: pointer;
 }
 
-#post-delete:hover {
-    background-image: url(/x-alt.svg);
-}
-#post-delete:active {
+#post-delete:where(:active, :hover) {
     background-image: url(/x-alt.svg);
 }
 
@@ -564,8 +522,7 @@ input::-webkit-file-upload-button:active {
     cursor: pointer;
 }
 
-#post-edit:hover,
-#post-edit:active {
+#post-edit:where(:hover, :active) {
     background-image: url(/edit-alt.svg);
 }
 
@@ -580,15 +537,19 @@ footer {
     text-align: center;
 }
 
-footer button {
-    background-color: transparent;
+footer > button {
+    font-family: Pop-S;
+    color: #2f2f2f;
     border: none;
-
-    color: var(--captions);
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.1);
 }
 
-footer button:hover {
-    color: #2f2f2f;
+footer > button:hover {
+    scale: 1.05;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //Firebase
 import { db } from "../../firebase";
-import { collection, doc, deleteDoc, query, orderBy, onSnapshot, updateDoc } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
 const useFeed = () => {
     const [posts, setPosts] = useState([]);
@@ -17,20 +17,7 @@ const useFeed = () => {
         };
     }, []);
 
-    const deletePost = async (id) => {
-        let postToDelete = doc(db, "Posts", id);
-        await deleteDoc(postToDelete);
-    };
-
-    const editPost = (post) => {
-        let captionInput = prompt("Edit your post", post.caption);
-        if (captionInput === "") return;
-        //Update db info
-        const postRef = doc(db, "Posts", post.id);
-        updateDoc(postRef, { caption: captionInput });
-    };
-
-    return { posts, deletePost, editPost };
+    return { posts };
 };
 
 export default useFeed;

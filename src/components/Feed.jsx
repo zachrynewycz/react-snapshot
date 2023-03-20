@@ -2,12 +2,12 @@ import Post from "./Post";
 import useFeed from "../hooks/useFeed";
 
 const Feed = () => {
-    const { posts, deletePost, editPost } = useFeed();
+    const { posts } = useFeed();
 
     return (
         <div className="feed">
             {posts.map((post) => (
-                <Post key={post.id} post={post} deletePost={deletePost} editPost={editPost} />
+                <Post key={post.id} post={post} />
             ))}
         </div>
     );

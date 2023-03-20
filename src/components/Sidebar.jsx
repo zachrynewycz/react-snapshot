@@ -16,12 +16,7 @@ const Sidebar = () => {
             <div className="sidebar" style={{ width: showSidebar ? "250px" : "0" }}>
                 <button id="sidebar-close-btn" onClick={() => setShowSidebar((s) => !s)} />
 
-                <a id="sidebar-label" onClick={logout}>
-                    Logout
-                </a>
-                <a id="github" href="https://github.com/zachrynewycz">
-                    <span id="github-text">Github</span>
-                </a>
+                <a onClick={logout}>Logout</a>
             </div>
         </>
     );
