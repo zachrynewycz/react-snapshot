@@ -8,6 +8,7 @@ const useFeed = () => {
 
     useEffect(() => {
         const postCollection = collection(db, "Posts");
+
         const unsubscribe = onSnapshot(query(postCollection, orderBy("timestamp", "desc")), (snapshot) => {
             setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
@@ -17,7 +18,7 @@ const useFeed = () => {
         };
     }, []);
 
-    return { posts };
+    return { posts, setPosts };
 };
 
 export default useFeed;

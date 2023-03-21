@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 //Firebase
 import { auth } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Profile from "./pages/Profile";
 
 const App = () => {
     const [user] = useAuthState(auth);
@@ -15,6 +16,7 @@ const App = () => {
             <Routes>
                 {user && <Route exact path="/" element={<Home user={user} />} />}
                 {!user && <Route path="login" element={<Login />} />}
+                <Route path="profile/:id" element={<Profile />} />
                 <Route exact path="*" element={<Navigate to={!user ? "login" : "/"} />} />
             </Routes>
         </Router>

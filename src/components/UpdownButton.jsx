@@ -14,7 +14,7 @@ const UpdownButton = ({ post, uid }) => {
 
     const checkIfVoted = async () => {
         const userDoc = await getDoc(userDocRef);
-        const userVotes = userDoc.data()?.votes;
+        const userVotes = userDoc.data().votes;
 
         if (userVotes?.includes(post.id)) {
             setIsVoted(true);
@@ -41,12 +41,8 @@ const UpdownButton = ({ post, uid }) => {
             <div id="votepulse" style={{ display: animate ? "block" : "none" }} />
 
             <button
-                id="upvote-btn"
-                style={{
-                    filter:
-                        isVoted &&
-                        "invert(45%) sepia(60%) saturate(4768%) hue-rotate(202deg) brightness(103%) contrast(151%)",
-                }}
+                disabled={post.userId === uid}
+                className={isVoted ? "upvote-btn__isVoted" : "upvote-btn"}
                 onClick={handleVote}
             />
             <h1 id="post-votes">{post.votes}</h1>

@@ -6,7 +6,7 @@ const Feed = () => {
 
     return (
         <div className="feed">
-            {posts.map((post) => (
+            {posts?.map((post) => (
                 <Post key={post.id} post={post} />
             ))}
         </div>

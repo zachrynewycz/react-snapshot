@@ -8,19 +8,13 @@ const Nav = () => {
     return (
         <nav>
             <div className="nav-container">
-                <div className="fixed-nav-flex">
-                    <Sidebar />
-                </div>
+                <Sidebar />
 
-                <div className="fixed-nav-flex">
-                    <div className="logo" />
-                </div>
+                <div className="logo" />
 
-                <div className="fixed-nav-flex">
-                    <div className="nav-user-info">
-                        <img className="nav-user-profilepic" src={user.photoURL} />
-                        <div className="nav-username">{user.displayName?.split(" ")[0]}</div>
-                    </div>
+                <div className="nav-user-info">
+                    <img src={user.photoURL} />
+                    <h4>{user.displayName?.split(" ")[0]}</h4>
                 </div>
             </div>
         </nav>
