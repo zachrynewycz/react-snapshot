@@ -1,5 +1,5 @@
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import UpdownButton from "./UpdownButton";
 
 const Post = ({ post }) => {

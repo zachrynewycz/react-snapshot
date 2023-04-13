@@ -16,10 +16,6 @@ const Form = () => {
         setCaptionInput(e.target.value);
     };
 
-    const handleFileUpload = (e) => {
-        setImage(e.target.files[0]);
-    };
-
     const processUpload = async () => {
         if (!image) {
             alert("Please upload an image to post.");
@@ -74,7 +70,13 @@ const Form = () => {
                 placeholder="Enter a caption for your post..."
                 maxLength="185"
             />
-            <input className="image-input" type="file" ref={imageRef} onChange={handleFileUpload} accept="image/*" />
+            <input
+                className="image-input"
+                type="file"
+                ref={imageRef}
+                onChange={(e) => setImage(e.target.files[0])}
+                accept="image/*"
+            />
 
             <progress
                 className="upload-progress"

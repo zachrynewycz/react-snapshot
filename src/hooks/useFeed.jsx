@@ -18,7 +18,7 @@ const useFeed = () => {
         };
     }, []);
 
-    return { posts, setPosts };
+    return { posts };
 };
 
 export default useFeed;
