@@ -3,7 +3,6 @@
 
 💬 A social media app with some inspirations taken from reddit, twitter, and instagram.
 
-**Live Demo**: https://social-media-app-635c5.web.app/
 
 ## Features
 
